@@ -1,2 +1,4 @@
 # cinevocab
-A browser extension that lets you save words and phrases from streaming subtitles for studies in one click. Cinevocab is a Firefox extension for language learners. While watching movies or TV shows on Netflix, HBO, or any streaming site, highlight a word from the subtitles and save it instantly, no pausing, no switching tabs.
+HBO Max's subtitle DOM selectors can change when they push updates. If the button clicks but nothing saves, open the browser DevTools (F12), inspect the subtitle text on screen, and find its class name — then add it to the SUBTITLE_SELECTORS array in content_script.js. I've already included the most common ones but HBO occasionally shuffles them.
+
+
