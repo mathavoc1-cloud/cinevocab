@@ -1,4 +1,4 @@
 # cinevocab
-HBO Max's subtitle DOM selectors can change when they push updates. If the button clicks but nothing saves, open the browser DevTools (F12), inspect the subtitle text on screen, and find its class name — then add it to the SUBTITLE_SELECTORS array in content_script.js. I've already included the most common ones but HBO occasionally shuffles them.
+cinevocab is a Firefox extension built for language learners. While watching movies or shows on any streaming platform, a floating button sits on your screen. When a unknown word in the subtitle appears, click it once — the phrase is saved instantly. No pausing, no switching tabs, no interruptions. Review your saved phrases anytime directly on screen and export them as a CSV when you're ready to study.
 
 

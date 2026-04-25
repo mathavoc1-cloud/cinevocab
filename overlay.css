@@ -1,6 +1,6 @@
 #cinevoc-btn {
   position: fixed;
-  bottom: 32px;
+  bottom: 120px;
   right: 32px;
   z-index: 999999;
   width: 52px;
@@ -40,7 +40,7 @@
 
 #cinevoc-toast {
   position: fixed;
-  bottom: 96px;
+  bottom: 184px
   right: 32px;
   z-index: 999999;
   background: #1a1a2e;
@@ -60,7 +60,7 @@
 
 #cinevoc-tray {
   position: fixed;
-  bottom: 96px;
+  bottom: 184px;
   right: 32px;
   z-index: 999998;
   background: #1a1a2e;
