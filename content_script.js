@@ -1,4 +1,3 @@
-// HBO Max subtitle selectors — update if HBO changes their DOM
 const SUBTITLE_SELECTORS = [
   '[class*="subtitle"]',
   '[class*="Subtitle"]',
@@ -21,9 +20,20 @@ function getSubtitleText() {
   return null;
 }
 
-// --- Build the floating UI ---
+function isVideoPlaying() {
+  const videos = document.querySelectorAll("video");
+  for (const v of videos) {
+    if (!v.paused && !v.ended && v.readyState > 2) return true;
+  }
+  return false;
+}
+
+let uiBuilt = false;
+
 function buildUI() {
-  // Floating button
+  if (document.getElementById("cinevoc-btn")) return; // already exists
+  uiBuilt = true;
+
   const btn = document.createElement("button");
   btn.id = "cinevoc-btn";
   btn.title = "Save subtitle (cinévoc)";
@@ -33,11 +43,9 @@ function buildUI() {
   badge.id = "cinevoc-badge";
   btn.appendChild(badge);
 
-  // Toast notification
   const toast = document.createElement("div");
   toast.id = "cinevoc-toast";
 
-  // Tray
   const tray = document.createElement("div");
   tray.id = "cinevoc-tray";
   tray.innerHTML = `
@@ -56,7 +64,6 @@ function buildUI() {
   document.body.appendChild(tray);
   document.body.appendChild(btn);
 
-  // --- State ---
   let trayOpen = false;
   let toastTimer = null;
 
@@ -102,11 +109,8 @@ function buildUI() {
     });
   }
 
-  // --- Button click: save subtitle OR toggle tray ---
-  btn.addEventListener("click", (e) => {
-    // Long-press or second click opens tray — single click saves
+  btn.addEventListener("click", () => {
     const subtitle = getSubtitleText();
-
     if (subtitle) {
       browser.storage.local.get("frenchWords").then(({ frenchWords = [] }) => {
         if (frenchWords.includes(subtitle)) {
@@ -121,14 +125,12 @@ function buildUI() {
         }
       });
     } else {
-      // No subtitle found — toggle the tray instead
       trayOpen = !trayOpen;
       tray.classList.toggle("open", trayOpen);
       if (trayOpen) loadAndRender();
     }
   });
 
-  // Right-click on button = toggle tray
   btn.addEventListener("contextmenu", (e) => {
     e.preventDefault();
     trayOpen = !trayOpen;
@@ -161,12 +163,57 @@ function buildUI() {
     });
   };
 
+  // Handle fullscreen
+  document.addEventListener("fullscreenchange", () => {
+    const btnEl = document.getElementById("cinevoc-btn");
+    const toastEl = document.getElementById("cinevoc-toast");
+    const trayEl = document.getElementById("cinevoc-tray");
+    if (!btnEl) return;
+    const fullscreenEl = document.fullscreenElement;
+    if (fullscreenEl) {
+      fullscreenEl.appendChild(btnEl);
+      fullscreenEl.appendChild(toastEl);
+      fullscreenEl.appendChild(trayEl);
+    } else {
+      document.body.appendChild(btnEl);
+      document.body.appendChild(toastEl);
+      document.body.appendChild(trayEl);
+    }
+  });
+
   loadAndRender();
 }
 
-// Wait for body to be ready
-if (document.body) {
-  buildUI();
-} else {
-  document.addEventListener("DOMContentLoaded", buildUI);
+function removeUI() {
+  ["cinevoc-btn", "cinevoc-toast", "cinevoc-tray"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  });
+  uiBuilt = false;
 }
+
+// Core logic: watch for video play/pause/end
+function watchForVideo() {
+  const videos = document.querySelectorAll("video");
+  videos.forEach(v => {
+    v.addEventListener("playing", () => buildUI());
+    v.addEventListener("pause", () => removeUI());
+    v.addEventListener("ended", () => removeUI());
+  });
+}
+
+// Watch for new video elements being added to the DOM
+new MutationObserver(() => {
+  watchForVideo();
+
+  // Also handle URL changes (single-page apps like HBO Max)
+  if (!isVideoPlaying() && document.getElementById("cinevoc-btn")) {
+    removeUI();
+  }
+}).observe(document.body || document.documentElement, {
+  childList: true,
+  subtree: true
+});
+
+// Initial check
+watchForVideo();

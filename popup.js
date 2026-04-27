@@ -57,3 +57,5 @@ saveBtn.addEventListener("click", () => {
 });
 
 loadWords();
+
+//1.0

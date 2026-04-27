@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "cinevocab",
   "version": "1.0",
-  "description": "Save languages subtitles from any streaming platform in one click.",
+  "description": "Save French subtitles from any streaming platform in one click.",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],
   "content_scripts": [

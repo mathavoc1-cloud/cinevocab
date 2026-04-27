@@ -2,9 +2,9 @@
   position: fixed;
   bottom: 120px;
   right: 32px;
-  z-index: 999999;
-  width: 52px;
-  height: 52px;
+  top: auto;
+  left: auto;
+  transform: none;
   border-radius: 50%;
   background: #7c3aed;
   color: white;
@@ -40,11 +40,11 @@
 
 #cinevoc-toast {
   position: fixed;
-  bottom: 184px
+  bottom: 184px;
   right: 32px;
-  z-index: 999999;
-  background: #1a1a2e;
-  color: #86efac;
+  top: auto;
+  left: auto;
+  transform: none;
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 13px;
@@ -62,7 +62,9 @@
   position: fixed;
   bottom: 184px;
   right: 32px;
-  z-index: 999998;
+  top: auto;
+  left: auto;
+  transform: none;
   background: #1a1a2e;
   border: 1px solid #2a2a4e;
   border-radius: 12px;
