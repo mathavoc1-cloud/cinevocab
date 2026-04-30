@@ -1,10 +1,12 @@
-#cinevoc-btn {
+#cinevocab-btn {
   position: fixed;
   bottom: 120px;
   right: 32px;
   top: auto;
   left: auto;
   transform: none;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   background: #7c3aed;
   color: white;
@@ -18,10 +20,10 @@
   transition: background 0.2s, transform 0.1s;
   user-select: none;
 }
-#cinevoc-btn:hover { background: #6d28d9; transform: scale(1.08); }
-#cinevoc-btn:active { transform: scale(0.95); }
+#cinevocab-btn:hover { background: #6d28d9; transform: scale(1.08); }
+#cinevocab-btn:active { transform: scale(0.95); }
 
-#cinevoc-badge {
+#cinevocab-badge {
   position: absolute;
   top: -4px;
   right: -4px;
@@ -38,7 +40,7 @@
   display: none;
 }
 
-#cinevoc-toast {
+#cinevocab-toast {
   position: fixed;
   bottom: 184px;
   right: 32px;
@@ -55,10 +57,10 @@
   max-width: 260px;
   border: 1px solid #2a2a4e;
 }
-#cinevoc-toast.show { opacity: 1; }
-#cinevoc-toast.error { color: #f87171; }
+#cinevocab-toast.show { opacity: 1; }
+#cinevocab-toast.error { color: #f87171; }
 
-#cinevoc-tray {
+#cinevocab-tray {
   position: fixed;
   bottom: 184px;
   right: 32px;
@@ -76,9 +78,9 @@
   box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   overflow: hidden;
 }
-#cinevoc-tray.open { display: flex; }
+#cinevocab-tray.open { display: flex; }
 
-#cinevoc-tray-header {
+#cinevocab-tray-header {
   padding: 12px 14px;
   font-size: 14px;
   font-weight: 600;
@@ -88,7 +90,7 @@
   justify-content: space-between;
   align-items: center;
 }
-#cinevoc-tray-header button {
+#cinevocab-tray-header button {
   background: none;
   border: none;
   color: #888;
@@ -97,12 +99,12 @@
   line-height: 1;
 }
 
-#cinevoc-tray-list {
+#cinevocab-tray-list {
   overflow-y: auto;
   flex: 1;
   padding: 8px 0;
 }
-#cinevoc-tray-list .cv-item {
+#cinevocab-tray-list .cv-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -111,28 +113,28 @@
   color: #ddd;
   border-bottom: 1px solid #1e1e3a;
 }
-#cinevoc-tray-list .cv-item:last-child { border-bottom: none; }
-#cinevoc-tray-list .cv-item button {
+#cinevocab-tray-list .cv-item:last-child { border-bottom: none; }
+#cinevocab-tray-list .cv-item button {
   background: none;
   border: none;
   color: #f87171;
   cursor: pointer;
   font-size: 15px;
 }
-#cinevoc-tray-list .cv-empty {
+#cinevocab-tray-list .cv-empty {
   color: #555;
   font-size: 13px;
   text-align: center;
   padding: 20px;
 }
 
-#cinevoc-tray-footer {
+#cinevocab-tray-footer {
   padding: 10px 14px;
   border-top: 1px solid #2a2a4e;
   display: flex;
   gap: 8px;
 }
-#cinevoc-tray-footer button {
+#cinevocab-tray-footer button {
   flex: 1;
   padding: 6px;
   border-radius: 6px;
@@ -140,5 +142,5 @@
   cursor: pointer;
   font-size: 12px;
 }
-#cinevoc-export-btn { background: #7c3aed; color: white; }
-#cinevoc-clear-btn { background: #2a2a3e; color: #aaa; }
+#cinevocab-export-btn { background: #7c3aed; color: white; }
+#cinevocab-clear-btn { background: #2a2a3e; color: #aaa; }
